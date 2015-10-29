@@ -1,0 +1,13 @@
+fullname: Alessandro Molari
+email: molari.alessandro@gmail.com
+github:
+  username: alem0lars
+
+git:
+  mergetool:
+    name: Kaleidoscope
+    cmd: ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustexitcode: true
+  difftool:
+    name: Kaleidoscope
+    cmd: ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
