@@ -1,3 +1,5 @@
 elems:
   - src: 'elems/(gitconfig)$'
     dst: '~/.<1>'
+    only:
+      features: ['git']
