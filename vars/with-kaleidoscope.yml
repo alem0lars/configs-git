@@ -1,0 +1,8 @@
+git:
+  mergetool:
+    name: Kaleidoscope
+    cmd: ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustexitcode: true
+  difftool:
+    name: Kaleidoscope
+    cmd: ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
