@@ -31,16 +31,16 @@
 #                                                                              │
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
-  variable "github.username", type: :string
-  variable "email",           type: :string
-  variable "fullname",        type: :string
+  variable "github.username", type: :string?
+  variable "email",           type: :string?
+  variable "fullname",        type: :string?
 
-  variable "git.mergetool.name",          type: :string
-  variable "git.mergetool.cmd",           type: :string
-  variable "git.mergetool.trustexitcode", type: :bool, default: false
+  variable "git.mergetool.name",          type: :string?
+  variable "git.mergetool.cmd",           type: :string?
+  variable "git.mergetool.trustexitcode", type: :bool?, default: false
 
-  variable "git.difftool.name", type: :string
-  variable "git.difftool.cmd",  type: :string
+  variable "git.difftool.name", type: :string?
+  variable "git.difftool.cmd",  type: :string?
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
