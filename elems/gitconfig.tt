@@ -30,7 +30,7 @@
 # limitations under the License.                                               │
 #                                                                              │
 # ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals{
+<% define_locals do
   variable "github.username", type: :string
   variable "email",           type: :string
   variable "fullname",        type: :string
@@ -41,7 +41,7 @@
 
   variable "git.difftool.name", type: :string
   variable "git.difftool.cmd",  type: :string
-} -%>
+end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
 <% local?("github.username") do |username| %>
