@@ -31,30 +31,34 @@
 #                                                                              │
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
-  variable "github.username", type: :string?
-  variable "email",           type: :string?
-  variable "fullname",        type: :string?
+  variable :"github.username", type: :string?, as: :username
+  variable :email,             type: :string?
+  variable :fullname,          type: :string?
 
-  variable "git.mergetool.name",          type: :string?
-  variable "git.mergetool.cmd",           type: :string?
-  variable "git.mergetool.trustexitcode", type: :bool?, default: false
+  prefixed(:"git.mergetool.", as: :mergetool_) do
+    variable :name,          type: :string?
+    variable :cmd,           type: :string?
+    variable :trustexitcode, type: :bool?, default: false
+  end
 
-  variable "git.difftool.name", type: :string?
-  variable "git.difftool.cmd",  type: :string?
+  prefixed(:"git.difftool.", as: :difftool_) do
+    variable :name, type: :string?
+    variable :cmd,  type: :string?
+  end
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
-<% local?("github.username") do |username| %>
 [github]
-  user = <%= username %>
-<% end -%>
+  <% if local? :username %>
+  user = <%= local! :username %>
+  <% end -%>
 
 [user]
-  <% local?("email") do |email| %>
-  email = <%= email %>
+  <% if local? :email %>
+  email = <%= local! :email %>
   <% end -%>
-  <% local?("fullname") do |fullname| %>
-  name = <%= fullname %>
+  <% if local? :fullname %>
+  name = <%= local! :fullname %>
   <% end -%>
 
 [push]
@@ -69,23 +73,23 @@ end -%>
 [core]
   autocrlf = input
 
-<% local?("git.mergetool.(name|cmd)") do |name, cmd| %>
-[mergetool "<%= name %>"]
-  cmd = <%= cmd %>
-  trustexitcode = <%= local! "git.mergetool.trustexitcode" %>
+<% if local? :"mergetool_(name|cmd)" %>
+[mergetool "<%= local! :mergetool_name %>"]
+  cmd = <%= local! :mergetool_cmd %>
+  trustexitcode = <%= local! :mergetool_trustexitcode %>
 [mergetool]
   prompt = false
 [merge]
-  tool = <%= name %>
+  tool = <%= local! :mergetool_name %>
 <% end -%>
 
-<% local?("git.difftool.(name|cmd)") do |name, cmd| %>
-[difftool "<%= name %>"]
-  cmd = <%= cmd %>
+<% if local? :"difftool_(name|cmd)" %>
+[difftool "<%= local! :difftool_name %>"]
+  cmd = <%= local! :difftool_cmd %>
 [difftool]
   prompt = false
 [diff]
-  tool = <%= name %>
+  tool = <%= local! :difftool_name %>
 <% end -%>
 
 # vim: set filetype=eruby.conf :

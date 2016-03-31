@@ -4,3 +4,5 @@ elems:
     only:
       features:
         - git
+
+# vim: set filetype=eruby.yaml :
