@@ -6,3 +6,6 @@ git:
   difftool:
     name: Kaleidoscope
     cmd: ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+features:
+  - kaleidoscope
