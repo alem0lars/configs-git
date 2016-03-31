@@ -69,7 +69,7 @@ end -%>
 [core]
   autocrlf = input
 
-<% local?("git.mergetool.name", "git.mergetool.cmd") do |name, cmd| %>
+<% local?("git.mergetool.(name|cmd)") do |name, cmd| %>
 [mergetool "<%= name %>"]
   cmd = <%= cmd %>
   trustexitcode = <%= local! "git.mergetool.trustexitcode" %>
@@ -79,7 +79,7 @@ end -%>
   tool = <%= name %>
 <% end -%>
 
-<% local?("git.difftool.name", "git.difftool.cmd") do |name, cmd| %>
+<% local?("git.difftool.(name|cmd)") do |name, cmd| %>
 [difftool "<%= name %>"]
   cmd = <%= cmd %>
 [difftool]
