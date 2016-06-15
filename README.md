@@ -1,3 +1,3 @@
 # configs-git
 
-Git configuration (fizzy compliant)
+Git configuration (`fizzy` compliant).
