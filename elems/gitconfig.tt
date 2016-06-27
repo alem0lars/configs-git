@@ -35,16 +35,12 @@
   variable :email,             type: :string?
   variable :fullname,          type: :string?
 
-  prefixed(:"git.mergetool.", as: :mergetool_) do
-    variable :name,          type: :string?
-    variable :cmd,           type: :string?
-    variable :trustexitcode, type: :bool?, default: false
-  end
+  variable :"git.mergetool.name",          type: :string, as: :mergetool_name
+  variable :"git.mergetool.cmd",           type: :string, as: :mergetool_cmd
+  variable :"git.mergetool.trustexitcode", type: :bool, default: false, as: :mergetool_trustexitcode
 
-  prefixed(:"git.difftool.", as: :difftool_) do
-    variable :name, type: :string?
-    variable :cmd,  type: :string?
-  end
+  variable :"git.difftool.name", type: :string, as: :difftool_name
+  variable :"git.difftool.cmd",  type: :string, as: :difftool_cmd
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
@@ -73,7 +69,7 @@ end -%>
 [core]
   autocrlf = input
 
-<% if local? :"mergetool_(name|cmd)" %>
+<% if local? :"mergetool_name" %>
 [mergetool "<%= local! :mergetool_name %>"]
   cmd = <%= local! :mergetool_cmd %>
   trustexitcode = <%= local! :mergetool_trustexitcode %>
@@ -83,7 +79,7 @@ end -%>
   tool = <%= local! :mergetool_name %>
 <% end -%>
 
-<% if local? :"difftool_(name|cmd)" %>
+<% if local? :"difftool_name" %>
 [difftool "<%= local! :difftool_name %>"]
   cmd = <%= local! :difftool_cmd %>
 [difftool]

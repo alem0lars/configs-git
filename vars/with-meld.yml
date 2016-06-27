@@ -1,0 +1,8 @@
+git:
+  mergetool:
+    name: Meld
+    cmd: meld '$BASE $LOCAL $REMOTE $MERGED'
+    trustexitcode: false
+  difftool:
+    name: Meld
+    cmd: meld '$LOCAL $REMOTE'
