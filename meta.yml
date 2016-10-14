@@ -1,8 +1,8 @@
 elems:
-  - src: elems/(gitconfig)$
-    dst: ~/.<1>
-    only:
-      features:
-        - git
+
+  - src:  elems/(gitconfig)$
+    dst:  ~/.<1>
+    only: f?git
+
 
 # vim: set filetype=eruby.yaml :
