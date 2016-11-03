@@ -6,3 +6,6 @@ git:
   difftool:
     name: Meld
     cmd: meld '$LOCAL $REMOTE'
+
+features:
+  - meld
