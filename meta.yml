@@ -1,6 +1,6 @@
 elems:
 
-  - src:  elems/(gitconfig)$
+  - src:  ^(gitconfig)$
     dst:  ~/.<1>
     only: f?git
 
