@@ -89,7 +89,7 @@ end -%>
   tool = <%= local! :difftool_name %>
 <% end %>
 
-<% if local? :gpg_sign %>
+<% if local! :gpg_sign %>
 [commit]
         gpgsign = true
 <% end %>
