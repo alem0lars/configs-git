@@ -31,6 +31,7 @@
 #                                                                              │
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
+  variable :"git.gpg_sign", type: :bool, default: false, as: :gpg_sign
   variable :"github.username", type: :string?, as: :username
   variable :email,             type: :string?
   variable :fullname,          type: :string?
@@ -47,15 +48,15 @@ end -%>
 [github]
   <% if local? :username %>
   user = <%= local! :username %>
-  <% end -%>
+  <% end %>
 
 [user]
   <% if local? :email %>
   email = <%= local! :email %>
-  <% end -%>
+  <% end %>
   <% if local? :fullname %>
   name = <%= local! :fullname %>
-  <% end -%>
+  <% end %>
 
 [push]
   default = simple
@@ -69,7 +70,7 @@ end -%>
 [core]
   autocrlf = input
 
-<% if local? :"mergetool_name" %>
+<% if local? :mergetool_name %>
 [mergetool "<%= local! :mergetool_name %>"]
   cmd = <%= local! :mergetool_cmd %>
   trustexitcode = <%= local! :mergetool_trustexitcode %>
@@ -77,15 +78,21 @@ end -%>
   prompt = false
 [merge]
   tool = <%= local! :mergetool_name %>
-<% end -%>
+<% end %>
 
-<% if local? :"difftool_name" %>
+<% if local? :difftool_name %>
 [difftool "<%= local! :difftool_name %>"]
   cmd = <%= local! :difftool_cmd %>
 [difftool]
   prompt = false
 [diff]
   tool = <%= local! :difftool_name %>
-<% end -%>
+<% end %>
+
+<% if local? :gpg_sign %>
+[commit]
+        gpgsign = true
+<% end %>
+
 
 # vim: set filetype=eruby.conf :

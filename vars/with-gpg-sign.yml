@@ -1,0 +1,5 @@
+git:
+  gpg_sign: true
+
+
+# vim: set filetype=eruby.yaml :
