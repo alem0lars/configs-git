@@ -31,17 +31,17 @@
 #                                                                              │
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
-  variable :"git.gpg_sign", type: :bool, default: false, as: :gpg_sign
-  variable :"github.username", type: :string?, as: :username
-  variable :email,             type: :string?
-  variable :fullname,          type: :string?
+  variable "git.gpg_sign",    type: :bool, default: false, as: :gpg_sign
+  variable "github.username", type: :string?, as: :username
+  variable "email",           type: :string?
+  variable "fullname",        type: :string?
 
-  variable :"git.mergetool.name",          type: :string, as: :mergetool_name
-  variable :"git.mergetool.cmd",           type: :string, as: :mergetool_cmd
-  variable :"git.mergetool.trustexitcode", type: :bool, default: false, as: :mergetool_trustexitcode
+  variable "git.mergetool.name",          type: :string, as: :mergetool_name
+  variable "git.mergetool.cmd",           type: :string, as: :mergetool_cmd
+  variable "git.mergetool.trustexitcode", type: :bool, default: false, as: :mergetool_trustexitcode
 
-  variable :"git.difftool.name", type: :string, as: :difftool_name
-  variable :"git.difftool.cmd",  type: :string, as: :difftool_cmd
+  variable "git.difftool.name", type: :string, as: :difftool_name
+  variable "git.difftool.cmd",  type: :string, as: :difftool_cmd
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
